@@ -1,0 +1,114 @@
+package ExerciciosPOO;
+
+import java.time.LocalDate;
+import java.util.Date;
+
+import javax.print.attribute.standard.DateTimeAtCompleted;
+
+import ExerciciosPOO.voo.DataException;
+
+public class Data {
+
+	private int dia;
+	
+	private int mes;
+	
+	private int ano;
+	
+	
+	public int getDia() {
+		return dia;
+	}
+
+
+	public void setDia(int dia) {
+		this.dia = dia;
+	}
+
+
+	public int getMes() {
+		return mes;
+	}
+
+
+	public void setMes(int mes) {
+		this.mes = mes;
+	}
+
+
+	public int getAno() {
+		return ano;
+	}
+
+
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
+
+
+	public Data(int dia, int mes, int ano) throws DataException {
+		
+		
+		if(dia < 1 || dia > 31) {
+			throw new DataException("DIA INVÁLIDO");
+		}else if(mes < 1 || mes > 12) {
+			throw new DataException("MÊS INVÁLIDO");
+		}else if(ano > LocalDate.now().getYear()) {
+			throw new DataException("ANO INVÁLIDO");
+		}
+		
+		this.dia = dia;
+		this.mes = mes;
+		this.ano = ano;
+	}
+	
+	public String toData() {
+		
+		StringBuilder data = new StringBuilder();
+		
+		String dia = "";
+		String mes = "";
+		
+		
+		int[] numeros = {1,2,3,4,5,6,7,8,9};
+		
+		int[] numeros1 = {10,11,12,13,14,15,16,17,18,19,20, 
+				21,23,24,25,26, 27, 28,29, 30, 31};
+		
+		for (int i = 0; i < numeros.length; i++) {
+			if(this.dia == numeros[i]) {
+				dia = "0" + this.dia + "/";
+			}
+			
+			if(this.mes == numeros[i]) {
+				mes = "0" + this.mes + "/";
+			}
+			
+			
+		}
+		
+		
+		for (int i = 0; i < numeros1.length; i++) {
+			
+			if(this.dia == numeros1[i]) {
+				dia = this.dia + "/";
+			}
+			
+			if(this.mes == numeros1[i]) {
+				mes = this.mes + "/";
+			}
+			
+		}
+		
+		
+		
+		data.append(dia + mes + this.ano);
+		
+		
+		
+		return data.toString();
+	}
+	
+	
+	
+
