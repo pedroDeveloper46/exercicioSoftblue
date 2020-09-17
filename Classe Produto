@@ -1,0 +1,87 @@
+package ExerciciosPOO.softblue;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import ExerciciosPOO.Data;
+import ExerciciosPOO.voo.DataException;
+
+public class Produto {
+	
+	private String nome;
+	
+	private double peso;
+	
+	private Data date;
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public double getPeso() {
+		return peso;
+	}
+
+	public void setPeso(double peso) {
+		this.peso = peso;
+	}
+
+	public Data getDate() {
+		return date;
+	}
+
+	public void setDate(Data date) {
+		this.date = date;
+	}
+	
+	private static List<Produto> produto = new ArrayList<>();
+	
+	
+	public Produto(String nome, double peso, Data data) {
+		
+		this.nome = nome;
+		
+		this.peso = peso;
+		
+		this.date = data;
+	}
+	
+	
+    public static void preencherLista() throws DataException {
+    	
+    	Data d1 = new Data(1,9,2020);
+    	
+    	
+    	Produto p = new Produto("Feijão", 2.50, d1);
+    	
+    	Produto p1 = new Produto("Macarrão", 4.00 , d1);
+    	
+    	Produto p2 = new Produto("Café", 10.00, d1);
+    	
+    	produto.add(p);
+    	produto.add(p1);
+    	produto.add(p2);
+    }
+    
+    
+    public static void printProdutos() {
+    	
+    	DecimalFormat f = new DecimalFormat("0.00");
+    	
+    	int i = 0;
+    	for (Produto p : produto) {
+    		
+    		i++;
+			System.out.print(i + ". " + p.getNome() + " " + f.format(p.getPeso()) + " " + p.getDate().toData());
+		    System.out.println();
+    	}
+    	
+    }
+    
+
+}
